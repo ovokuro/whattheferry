@@ -1,0 +1,42 @@
+::selection
+  //background: $black
+  //color: $white
+
+// Typography
+
+html
+  font-size: $base-font-size-mobile
+  @include lg
+    font-size: $base-font-size-desktop
+
+body
+  font-family: $font-sans
+  font-weight: $font-weight-regular
+  line-height: $line-height-default 
+  background: $black
+  color: $white
+p
+  margin: 0
+  //color: $text-colour-bright
+
+h1, h2, h3, h4
+  margin: 0
+  font-size: $font-size-default
+  font-weight: inherit
+  line-height: $line-height-default
+  //color: $text-colour-dark
+
+small, .font_small
+  font-size: 0.618rem
+
+hr 
+  display: block
+  height: 1px
+  border: 0
+  margin: 1.45rem 0
+  background: rgba(0,0,0,0.1)
+  
+.noscript
+  background: red
+  //color: $black
+  padding: 0 2rem

@@ -1,0 +1,40 @@
+.image
+  max-width: 100%
+  height: auto
+  display: block
+
+.no-margin
+  margin: 0 !important
+
+.is-hidden
+  display: none !important
+
+.js-hidden
+  display: none
+
+.has-text-white
+  color: #FFFFFF !important
+  
+.scroller
+  max-height: 45em
+  overflow: scroll
+  
+.has-line-after
+  display: flex
+  align-items: center
+  .line
+    flex: 1
+    display: inline-block
+    height: 1px
+    background: rgba(255,255,255,.35)
+    margin-left: 1rem
+
+  
+.has-text-weight-regular
+  font-weight: $font-weight-regular
+  
+.is-hidden-mobile
+  display: none
+  @include sm
+    display: block
+    display: initial
