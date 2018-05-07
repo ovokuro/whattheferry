@@ -38,13 +38,24 @@ function updateTimetable() {
   var times = getTimetable();
  
   var ul = document.querySelector('#timetable');
+  // remove any existing timetable
+  while (ul.firstChild) {
+    ul.firstChild.remove();
+  }
+  
+  // create new timetable
   
   for (i = 0; i < times.length; i++) {
-    var li = document.createElement('li');
-    li.textContent = times[i];
-    ul.append(li);
+    if (times[i] > currentTime) {
+      var li = document.createElement('li');
+      li.textContent = times[i];
+      ul.append(li);
+    } else {
+      
+    }
+    
+    
   }
-  console.log(times.length);
   
 }
 

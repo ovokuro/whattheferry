@@ -1,0 +1,24 @@
+.routes
+  display: inline-grid
+  grid-template-columns: 1fr 1fr 1fr
+  grid-gap: 1rem
+  .route__button    
+    &:hover, &.active
+      background: yellow
+      color: $black
+      
+    &.route__from
+      grid-column: 1
+      &:nth-of-type(2)
+        grid-row: 2
+      
+    &.route__to
+      grid-column: 3
+      grid-row: span 2
+      align-self: center
+    
+  .route__direction
+    grid-column: 2
+    grid-row: span 2
+    justify-self: center
+    align-self: center
