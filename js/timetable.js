@@ -66,7 +66,7 @@ var bwToCity = {
   ]
 };
 // CITY TO BAYSWATER
-var cityToBW = {
+var cityToBw = {
   from: 'City',
   to: 'Bayswater',
   weekday: [
