@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         minuteText = " minutes"
       }
-      timeToDeparture.textContent = 'This ferry is leaving in ' + timeRemaining + minuteText;
+      timeToDeparture.textContent = 'Next ferry departing in ' + timeRemaining + minuteText;
       
       if (timeRemaining < 60) {
         nextTime.append(timeToDeparture);
