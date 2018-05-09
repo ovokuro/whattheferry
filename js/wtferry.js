@@ -114,12 +114,16 @@ document.addEventListener("DOMContentLoaded", function () {
         minuteText = " minutes"
       }
       timeToDeparture.textContent = 'This ferry is leaving in ' + timeRemaining + minuteText;
-
-      nextTime.append(timeToDeparture);
+      
+      if (timeRemaining < 60) {
+        nextTime.append(timeToDeparture);
+      }
+      
+      
     } else {
-      var messageContainer = document.querySelector('#section');
-      var message = document.createElement('p');
-      message.textContent = "Sorry, no more ferries today!";
+      //var messageContainer = document.querySelector('#section');
+      //var message = document.createElement('p');
+      //message.textContent = "Sorry, no more ferries today!";
 
       //messageContainer.append(message)
     }

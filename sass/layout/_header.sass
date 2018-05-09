@@ -1,38 +1,46 @@
+header
+  background: #444
+  padding-left: 1.45rem
+  padding-top: .725rem
+  padding-bottom: .725rem
+  padding-right: 1.45rem
+  @include md
+    padding-left: 2.9rem
+
 .routes
   display: inline-grid
   grid-template-columns: repeat(3, 1fr)
-  grid-gap: 1rem
+  grid-gap: 0 1rem
+  text-transform: uppercase
+  letter-spacing: 0.0666em
   .routes__labels
     grid-column: 1 / -1
-    font-size: .75rem
+    font-size: .6666rem
     display: grid
     grid-template-columns: repeat(3, 1fr)
     grid-gap: 1rem
-    opacity: .7
+    opacity: .5
     .route__to
       grid-column: 3
-  .route__button    
-    &:hover, &.active
-      background: yellow
-      color: $black
-      
-    &.route__from
-      grid-column: 1
-      &:nth-of-type(2)
-        grid-row: 2
-      
-    &.route__to
-      grid-column: 3
-      grid-row: span 2
-      align-self: center
+
+
+
+  .routes__route
+    align-self: center
+    font-size: .875rem
     
-  .route__direction
+  .route__flip
     grid-column: 2
-    grid-row: span 2
     justify-self: center
     align-self: center
+    font-size: .875rem
     
+
+.select
+  //border-bottom: 1px solid $white
+  
 .select__arrow
+  display: none
   position: absolute
   top: 0
   left: 0
@@ -42,3 +50,28 @@
   border-style: solid
   border-width: 8px 5px 0 5px
   border-color: $white transparent transparent transparent
+  
+.select__more
+  display: none
+  position: absolute
+  left: -1.5ch
+  top: 0
+  bottom: 0
+  margin: auto 0
+  
+  
+#flipDirection
+  display: flex
+  &:hover
+  .flip__arrow
+    width: 0
+    height: 0
+    pointer-events: none
+    border-style: solid
+    border-width: 8px 5px 0 5px
+    border-color: $white transparent transparent transparent
+    transform: rotate(90deg)
+    &.arrow--right
+      transform: rotate(-90deg)
+    
+    
