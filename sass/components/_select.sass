@@ -1,5 +1,7 @@
 .select
   position: relative
+  &.is-disabled
+    pointer-events: none
 
 select
   display: inline-block
@@ -14,7 +16,7 @@ select
   font: inherit
   cursor: pointer
   // offset indent
-  margin-left: -5px
+  //margin-left: -5px
 
   &::-ms-expand
     display: none
