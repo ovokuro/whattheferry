@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80323475-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-80323475-2');
+
+  </script>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Auckland Ferry Timetable | WTFerry?</title>
+
+  <link rel="stylesheet" href="https://use.typekit.net/tuv5cyb.css">
+  <link rel="stylesheet" href="dist/css/wtferry.css">
+
+  <meta name="description" content="Real-time ferry information for Bayswater, Devonport, and Auckland City">
+  <meta name="robots" content="index,follow">
+  <meta name="googlebot" content="index,follow">
+
+  <meta property="og:title" content="Home">
+  <meta property="og:description" content="Real-time ferry information for Bayswater,  Devonport, and Auckland City">
+  <meta property="og:image" content="http://res.cloudinary.com/solbreslin/image/upload/c_fill,h_630,w_1200/v1520740230/brand/ogimage.png">
+  <meta property="og:url" content="https://wtferry.com">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="pinterest" content="nopin">
+
+  <noscript>Looks like JavaScript is disabled. This website will not load correctly as a result.
+  </noscript>
+  <meta name="google-site-verification" content="4hYVd1nysRO8UyUwH_ZaQjsujniHf-WPAIzPv9K4eWg" />
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="routes" id="routeContainer">
+        <div class="control">
+          <div class="routes__label label--from">
+            <span>From</span>
+          </div>
+          <div class="routes__route route--from" id="routeFrom">
+            <div class="select">
+              <div class="select__arrow"></div>
+              <select id="select">
+                <option value="Bayswater">Bayswater</option>
+                <option value="Devonport">Devonport</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="control">
+          <div class="routes__label label--to">
+          <span>To</span>
+          </div>
+          <div class="routes__route route--to" id="routeTo">
+            <div class="select is-disabled">
+              <select>
+                <option value="">AKL City</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="route__flip">
+        <button title="Reverse direction" class="button no-border" id="flipDirection"><span>&#8652;</span></button>
+      </div>
+    </header>
+    <main>
+      <section id="section">
+        <ul id="timetable">
+
+        </ul>
+      </section>
+      <section class="links">
+        <a target="_blank" href="https://www.fullers.co.nz/travel-alerts/" class="is-external-link">Travel Alerts</a>
+      </section>
+    </main>
+
+    <div class="holiday-message" id="public-holiday">
+      <p>Today is a public holiday. Timetable follows a Sunday service.</p>
+    </div>
+
+    <div class="disclaimer">
+      <a href="#" id="disclaimerLink" class="disclaimer__link">Disclaimer</a>
+      <div class="disclaimer__info" id="disclaimerInfo">
+        <p><a href="#" class="disclaimer__close">Close this message</a><br><br> WTFerry was created to provide real time information for ferry passengers between Devonport, Bayswater and Auckland City.<br><br> The timetable has been taken directly from <a href="https://www.fullers.co.nz/timetables-and-fares/" target="_blank">Fullers.</a><br><br> WTFerry does not update where there are delays or cancellations. If you suspect deviation from a usual time, for example during bad weather, please check for status updates directly from <a href="https://www.fullers.co.nz/travel-alerts/" target="_blank">Fullers.</a><br><br>
+          <a href="#" class="disclaimer__close">Close this message</a></p>
+      </div>
+    </div>
+  </div>
+  <script src="dist/js/timetable.js"></script>
+  <script src="dist/js/wtferry.js"></script>
+</body>
+
+</html>
