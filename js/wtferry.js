@@ -50,17 +50,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // Access the correct day and return the timetable
     // First get the route
     var route = route;
+    console.log(day)
 
-
-    if (day == 4) {
+    if (day == 5) {
       times = route.friday;
-    } else if (day == 5) {
-      times = route.saturday;
     } else if (day == 6) {
+      times = route.saturday;
+    } else if (day == 0) {
       times = route.sunday
     } else {
       times = route.weekday;
     }
+    console.log(route)
 
     // check if date is public holiday
     // if match use sunday timetable
