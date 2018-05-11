@@ -1,29 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var select = document.querySelector('#select');
-  // CRUCIAL
-  // Select option appears to be cached in Firefox
-  // Need to detect the value on page load
-  var selectOption = select.value;
-  var isFlipped = false;
 
-  // Get the route and output to HTML
-  function getRoute() {
+
+  // Get the route
+  function getRoute(option) {
+    
     var route = bwToCity;
-
-    if (selectOption == 'Bayswater') {
+    
+    var url = window.location.href
+    var routeParameter = url.substring(url.indexOf('=')+1);
+  
+    
+    if (routeParameter == 1) {
       route = bwToCity;
-    } else {
+    } else if (routeParameter == 2) {
       route = dpToCity;
+    } else if (routeParameter == 3) {
+      route = cityToBw;
+    } else if (routeParameter == 4) {
+      route = cityToDp;
+    } else {
+      window.location.href = "index.html"
     }
-
-    if (isFlipped == true) {
-      if (route == bwToCity) {
-        route = cityToBw;
-      } else {
-        route = cityToDp;
-      }
-    }
-
+    
     getTimetable(route);
 
   }
@@ -31,6 +29,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Get the correct timetable and output as HTML
   function getTimetable(route) {
+    
+    var routeFrom = document.querySelector("#routeFrom"),
+        routeTo   = document.querySelector("#routeTo");
+    
+    var textFrom = route.from,
+        textTo   = route.to;
+    
+    routeFrom.textContent = textFrom;
+    routeTo.textContent = textTo;
+    
+    
     // Get the current time and store as string for comparison
     var now = new Date();
     var day = now.getDay();
@@ -50,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Access the correct day and return the timetable
     // First get the route
     var route = route;
-    console.log(day)
 
     if (day == 5) {
       times = route.friday;
@@ -61,7 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       times = route.weekday;
     }
-    console.log(route)
 
     // check if date is public holiday
     // if match use sunday timetable
@@ -71,15 +78,12 @@ document.addEventListener("DOMContentLoaded", function () {
       month = '0' + month;
     }
     var date = now.getDate() + '-' + month;
-    
+
 
     for (i = 0; i < publicHolidays.length; i++) {
       if (date === publicHolidays[i]) {
         times = route.sunday;
-        console.log('today is a public holiday');
         publicHolidayMessage()
-      } else {
-        console.log('today is not a public holiday')
       }
     }
 
@@ -105,6 +109,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var nextTime = document.querySelector('#timetable').getElementsByTagName('li')[0];
     if (nextTime) {
       var nextTimeText = nextTime.innerHTML;
+      
+      var nextFerryText = document.createElement('h1');
+      nextFerryText.textContent = "Next Ferry";
+      nextTime.append(nextFerryText);
 
       // Get the remaining minutes
       var t1 = currentTime.split(':'),
@@ -118,24 +126,27 @@ document.addEventListener("DOMContentLoaded", function () {
       var timeToDeparture = document.createElement('span');
 
       if (timeRemaining < 15) {
-        timeToDeparture.classList.add('has-text-red')
+        nextTime.classList.add('time--red')
       } else if (timeRemaining < 30) {
-        timeToDeparture.classList.add('has-text-orange')
+        nextTime.classList.add('time--orange')
       } else {
-        timeToDeparture.classList.add('has-text-green')
+        nextTime.classList.add('time--green')
       }
 
       var minuteText;
       if (timeRemaining == 1) {
-        minuteText = " minute"
+        minuteText = " Minute"
       } else {
-        minuteText = " minutes"
+        minuteText = " Minutes"
       }
-      timeToDeparture.textContent = 'Next ferry departing in ' + timeRemaining + minuteText;
+      
+      timeToDeparture.innerHTML = '<span>Departs in</span><span>' +  timeRemaining + minuteText + '</span>';
 
       if (timeRemaining < 60) {
         nextTime.append(timeToDeparture);
       }
+      
+
 
 
     } else {
@@ -148,8 +159,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateTimetable() {
-
-    getValue();
     getRoute();
 
   }
@@ -179,63 +188,37 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // ------------------------------------------------
-  // Update the route if direction of travel is flipped
-
-  var flipButton = document.querySelector("#flipDirection"),
-    routeContainer = document.querySelector("#routeContainer"),
-    routeTo = document.querySelector("#routeTo"),
-    routeFrom = document.querySelector("#routeFrom");
-
-  flipButton.addEventListener("click", function () {
-    isFlipped = !isFlipped;
-    updateTimetable();
-    routeContainer.classList.toggle('is-flipped');
-    swapElements(routeTo, routeFrom);
-  });
+ 
 
 
 
   // -------------------------------------------------
   // Update the route if user chooses from select
 
-  function getValue() {
-    switch (this.value) {
-      case 'Bayswater':
-        selectOption = 'Bayswater';
-        updateTimetable();
-        break;
-      case 'Devonport':
-        selectOption = 'Devonport';
-        updateTimetable();
-        break;
-    }
+
+
+  function publicHolidayMessage() {
+    var message = document.querySelector("#public-holiday");
+    message.classList.add('is-block');
   }
 
-  select.addEventListener('change', getValue, false);
-
-function publicHolidayMessage() {
-  var message = document.querySelector("#public-holiday");
-  message.classList.add('is-block');
-}
-
-var disclaimerInfo = document.querySelector("#disclaimerInfo"),
+  var disclaimerInfo = document.querySelector("#disclaimerInfo"),
     disclaimerLink = document.querySelector('#disclaimerLink'),
     disclaimerClose = document.querySelectorAll('.disclaimer__close');
-  
-disclaimerLink.addEventListener("click", function() {
-  disclaimerInfo.classList.add('is-block')
-})
-  
-for(i=0; i < disclaimerClose.length; i++) {
-  disclaimerClose[i].addEventListener("click", function() {
-  disclaimerInfo.classList.remove('is-block');
+
+  disclaimerLink.addEventListener("click", function () {
+    disclaimerInfo.classList.add('is-block')
   })
-}
-  
-var headerHeight = document.querySelector('header').offsetHeight,
-    main         = document.querySelector('main');
-  
-  main.style.minHeight = 'calc(100vh - ' + headerHeight + 'px)';
-  
+
+  for (i = 0; i < disclaimerClose.length; i++) {
+    disclaimerClose[i].addEventListener("click", function () {
+      disclaimerInfo.classList.remove('is-block');
+    })
+  }
+
+  //var headerHeight = document.querySelector('header').offsetHeight,
+    //main = document.querySelector('main');
+
+//  main.style.minHeight = 'calc(100vh - ' + headerHeight + 'px)';
+
 });

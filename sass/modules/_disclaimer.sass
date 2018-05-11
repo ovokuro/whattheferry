@@ -1,18 +1,13 @@
 .disclaimer
-  margin-top: auto
-  padding-right: 1.45rem
-  @include md
-    padding-right: 2.9rem
+  margin-top: 5.4rem
 
 .disclaimer__link
   text-transform: uppercase
   letter-spacing: .07em
   opacity: .5
-  display: block
-  min-width: 85%
-  width: 85%
-  margin-left: auto
+  display: inline-block
   font-size: .725rem
+  
 
 .disclaimer__info
   display: none
@@ -23,6 +18,7 @@
   right: 0
   background: $black
   padding: 1.45rem
+  z-index: 9999
   @include md
     padding: 2.9rem
   p
@@ -30,4 +26,6 @@
     
 .disclaimer__close
   opacity: .7
-  font-size: .825rem
+  font-size: .725rem
+  text-transform: uppercase
+  letter-spacing: $letter-spacing-default

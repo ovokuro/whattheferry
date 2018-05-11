@@ -1,15 +1,53 @@
-li:first-of-type 
-  font-size: 6.75rem
+ul
+  li
+    padding: .725rem 0
+    border-bottom: 1px solid rgba(255,255,255,.4)
+    &:last-of-type
+      border-bottom-width: 2px
+      margin-bottom: 1.45rem
+        
+.next-time
+  font-size: 4.5rem
   font-weight: 300
-  letter-spacing: - .0725em
+
+li:first-of-type 
+  border: none
+  font-size: 4.5rem
+  font-weight: 300
+  letter-spacing: -.0725em
+  position: relative
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  height: 15rem
+  margin-top: 1.45rem
+  margin-bottom: 1.45rem
+  &:before
+    content: ''
+    display: block
+    height: 15rem
+    width: 15rem
+    position: absolute
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+    margin: auto
+    border: 4px solid white
+    border-radius: 10rem
+  &.time--red:before
+    border-color: $red
+  &.time--orange:before
+    border-color: $orange
+  &.time--green:before
+    border-color: $green
+    
   span
     display: block
-    font-size: .875rem
+    font-size: .725rem
     font-weight: 400
-    letter-spacing: normal
-    &.has-text-orange
-      color: $orange
-    &.has-text-red
-      color: $red
-    &.has-text-green
-      color: $green
+    letter-spacing: $letter-spacing-default
+    text-transform: uppercase
+    span:nth-of-type(1)
+      opacity: .5

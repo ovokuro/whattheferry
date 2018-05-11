@@ -1,70 +1,35 @@
 header
-  background: $headerColour
+  //background: $headerColour
   display: flex
-
-.routes
-  min-width: 60%
-  width: 60%
-  max-width: 60%
-  margin-left: auto
-  padding-top: .725rem
-  padding-bottom: .725rem
+  //border-bottom: 2px solid $borderColourStrong
+  padding-bottom: 1.45rem
+  padding-top: 5.4rem
   
-.routes__label
+
+header > div
+  flex: 1 1 100%
+
+.route
+  display: flex
+  //justify-content: center
+  border-bottom: 1px solid $borderColour
+  padding-bottom: .3625rem
+  
+.arrow
+  align-self: flex-end
+  text-align: center
+  font-size: 1.45rem
+  
+.route__label
   text-transform: uppercase
   font-size: .725rem
   opacity: .5
-  letter-spacing: .05em
-.control + .control
-  margin-top: .725rem
+  letter-spacing: $letter-spacing-default
   
-.select
-  display: inline-block
-  select
-    text-transform: uppercase
-    letter-spacing: .05em
-      
-.select__arrow
-  position: absolute
-  top: 0
-  bottom: 0
-  margin: auto 0
-  right: -1.5ch
-  width: 0
-  height: 0
-  pointer-events: none
-  border-style: solid
-  border-width: .4em .25em 0 .25em
-  border-color: rgba(255,255,255,.5) transparent transparent transparent
+.route__location
+  text-transform: uppercase
+  letter-spacing: $letter-spacing-l
   
-.select__more
-  display: none
-  position: absolute
-  left: -1.5ch
-  top: 0
-  bottom: 0
-  margin: auto 0
-  
-  
-#flipDirection
-  &:hover
-  
-.route__flip
-  display: flex
-  min-width: 25%
-  width: 25%
-  max-width: 25%
-  border-left: 1px solid rgba(255,255,255,.5)
-
-  .button
-    padding: 1rem 2rem
-    flex: 1 0 100%
-    span
-      transform: rotate(90deg)
-      display: inline-block
-      font-size: 2.175rem
-      color: $white
-
 
 
     
