@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       times = route.weekday;
     }
-
+  
     // check if date is public holiday
     // if match use sunday timetable
     // index months from 1
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
       month = '0' + month;
     }
     var date = now.getDate() + '-' + month;
-
+    
 
     for (i = 0; i < publicHolidays.length; i++) {
       if (date === publicHolidays[i]) {
@@ -103,8 +103,17 @@ document.addEventListener("DOMContentLoaded", function () {
         li.textContent = times[i];
         ul.append(li);
       }
+      
+      var h = times[i].split(':')[0];
+      if (h < 3) {
+        var li2 = document.createElement('li');
+        li2.textContent = times[i];
+        ul.append(li2)
+      }
     }
 
+    // append times after midnight
+    
 
     var nextTime = document.querySelector('#timetable').getElementsByTagName('li')[0];
     if (nextTime) {
@@ -113,19 +122,33 @@ document.addEventListener("DOMContentLoaded", function () {
       var nextFerryText = document.createElement('h1');
       nextFerryText.textContent = "Next Ferry";
       nextTime.append(nextFerryText);
+    
+      // Compare current time with next departure
+      // Get remaining time in minutes
+      
+      var currentHour,
+          currentMin,
+          depHour,
+          depMin,
+          hourDifference,
+          minDifference,
+          totalDifferenceInMins;
+      
+      currentHour = currentTime.split(':')[0];
+      currentMin = currentTime.split(':')[1];
+      depHour = nextTimeText.split(':')[0];
+      depMin = nextTimeText.split(':')[1];
+      hourDifference = depHour - currentHour;
+      hourDifference = hourDifference * 60
+      minDifference = depMin - currentMin;
+      totalDifferenceInMins = hourDifference + minDifference;
+      timeRemaining = totalDifferenceInMins;
 
-      // Get the remaining minutes
-      var t1 = currentTime.split(':'),
-        t2 = nextTimeText.split(':');
-      var d1 = new Date(0, 0, 0, t1[0], t1[1]),
-        d2 = new Date(0, 0, 0, t2[0], t2[1]);
-      var diff = new Date(d2 - d1);
 
-      var timeRemaining = diff.getMinutes();
-
+      //console.log(timeRemaining)
       var timeToDeparture = document.createElement('span');
 
-      if (timeRemaining < 15) {
+      if (timeRemaining < 10) {
         nextTime.classList.add('time--red')
       } else if (timeRemaining < 30) {
         nextTime.classList.add('time--orange')
@@ -145,8 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (timeRemaining < 60) {
         nextTime.append(timeToDeparture);
       }
-      
-
+    
 
 
     } else {
